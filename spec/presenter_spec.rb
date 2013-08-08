@@ -26,14 +26,14 @@ describe CapGun::Presenter do
         capistrano = {:scm => :git, :previous_revision => "previous-sha", :current_revision => "current-sha" }
         presenter = CapGun::Presenter.new(capistrano)
         presenter.stub(:`).and_return("fatal: Not a git repo")
-        presenter.stub(:exit_code).and_return(stub("process status", :success? => false))
+        presenter.stub(:exit_code).and_return(double("process status", :success? => false))
         presenter.scm_log_messages.should == "N/A"
       end
 
       it "calls git log with previous_rev..current_rev" do
         capistrano = {:scm => :git, :previous_revision => "previous-sha", :current_revision => "current-sha" }
         presenter = CapGun::Presenter.new(capistrano)
-        presenter.stub(:exit_code).and_return(stub("process status", :success? => true))
+        presenter.stub(:exit_code).and_return(double("process status", :success? => true))
         presenter.should_receive(:`).with(/git log previous-sha..current-sha/)
         presenter.scm_log_messages
       end
@@ -43,14 +43,14 @@ describe CapGun::Presenter do
         capistrano = {:scm => :subversion, :previous_revision => "42", :current_revision => "46" }
         presenter = CapGun::Presenter.new(capistrano)
         presenter.stub(:`).and_return("fatal: Not a working copy")
-        presenter.stub(:exit_code).and_return(stub("process status", :success? => false))
+        presenter.stub(:exit_code).and_return(double("process status", :success? => false))
         presenter.scm_log_messages.should == "N/A"
       end
 
       it "calls svn log with -r previous_rev+1:current_rev" do
         capistrano = {:scm => :subversion, :previous_revision => "42", :current_revision => "46" }
         presenter = CapGun::Presenter.new(capistrano)
-        presenter.stub(:exit_code).and_return(stub("process status", :success? => true))
+        presenter.stub(:exit_code).and_return(double("process status", :success? => true))
         presenter.should_receive(:`).with(/svn log -r 43:46/)
         presenter.scm_log_messages
       end
