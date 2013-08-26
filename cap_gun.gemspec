@@ -5,6 +5,7 @@ Gem::Specification.new do |gem|
   gem.description   = %q{Super simple capistrano deployment notifications. Forked from relevance/cap_gun.}
   gem.summary       = %q{Super simple capistrano deployment notifications. Forked from relevance/cap_gun.}
   gem.homepage      = "https://github.com/xing/cap_gun"
+  gem.license       = 'MIT'
 
   gem.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   gem.files         = `git ls-files`.split("\n")

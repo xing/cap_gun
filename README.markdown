@@ -96,7 +96,7 @@ Just include a comment in the cap command like so, and CapGun will add the comme
 
 ## License
 
-(The MIT License)
+The MIT License (MIT)
 
 Copyright (c) 2009 [Relevance, Inc.](http://thinkrelevance.com)
 
